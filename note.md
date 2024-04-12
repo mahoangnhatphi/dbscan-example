@@ -1,15 +1,21 @@
 # Aspects of clustering
 
 Thuật toán bao gồm:​
-Partitioning Methods ​
+    
+    Partitioning Methods ​
 
-     Hierarchical Methods ​
+    Hierarchical Methods ​
 
-     Density-Based Methods ​
+    Density-Based Methods 
 
-     Grid-Based Methods ​
+    Grid-Based Methods ​
 
 Hàm khoảng cách được sử dụng để đo độ tương đồng hoặc không tương đồng giữa các điểm dữ liệu.​
+    
+    Tính toán khoảng cách giữa các điểm dữ liệu. Có nhiều cách để tính toán khoảng cách, chẳng hạn như khoảng cách Euclid, khoảng cách Manhattan, v.v.​
+
+    Hợp nhất hai cụm gần nhau nhất. Hai cụm gần nhau nhất có thể được xác định bằng thuật toán như thuật toán gần nhất (nearest neighbor) hoặc thuật toán liên kết trung bình (average linkage).​
+
 
 Chất lượng phân cụm được đánh giá dựa trên hai yếu tố:​
 
@@ -35,6 +41,7 @@ Chất lượng của kết quả phân cụm phụ thuộc vào ba yếu tố c
     Grid-Based Methods ​
 
 Partitioning Methods
+
 Phương pháp phân chia (Partitioning Methods)​
 
 Phương pháp phân chia là một kỹ thuật phân cụm tạo ra k phân vùng của dữ liệu, trong đó mỗi phân vùng đại diện cho một cụm và k <= n. Nghĩa là nó phân loại dữ liệu thành k nhóm, cùng nhau đáp ứng các yêu cầu sau:​
@@ -58,29 +65,40 @@ Phương pháp phân cấp: Phương pháp này tạo ra một phân cấp các 
 ​
 # Hirearchical methods
 
+Phương pháp phân cụm phân cấp (hay còn gọi là phân cụm phân cấp, phân cụm theo thứ bậc) là một kỹ thuật phân cụm dữ liệu nhóm các đối tượng thành các cụm dựa trên mức độ tương đồng của chúng. Khác với các phương pháp phân cụm khác như phân cụm dựa trên tâm (k-means, k-medoids), phương pháp phân cụm phân cấp không yêu cầu xác định trước số lượng cụm mong muốn.
 
+Cách thức hoạt động:
 
-Tính toán khoảng cách giữa các điểm dữ liệu. Có nhiều cách để tính toán khoảng cách, chẳng hạn như khoảng cách Euclid, khoảng cách Manhattan, v.v.​
+1. Khởi tạo:
 
-Hợp nhất hai cụm gần nhau nhất. Hai cụm gần nhau nhất có thể được xác định bằng thuật toán như thuật toán gần nhất (nearest neighbor) hoặc thuật toán liên kết trung bình (average linkage).​
+    Mỗi điểm dữ liệu được coi là một cụm riêng biệt.
+2. Lặp:
 
-Lặp lại bước 1 và 2 cho đến khi chỉ còn lại một cụm duy nhất.​
+    Tìm hai cụm gần nhau nhất theo một tiêu chí nào đó (ví dụ: khoảng cách Euclide, liên kết đơn giản, liên kết trung bình).
+
+    Sáp nhập hai cụm đó thành một cụm mới.
+
+    Cập nhật tiêu chí khoảng cách giữa các cụm mới hình thành và các cụm khác.
+3. Dừng:
+
+    Tiếp tục lặp cho đến khi chỉ còn một cụm duy nhất, hoặc cho đến khi đáp ứng một điều kiện dừng nào đó (ví dụ: độ tăng của tiêu chí khoảng cách giữa các cụm trở nên nhỏ).
 ​
+
 Ưu điểm:​
 
-Dễ hiểu và triển khai.​
+    Dễ hiểu và triển khai.​
 
-Có thể xử lý dữ liệu có kích thước lớn.​
+    Có thể xử lý dữ liệu có kích thước lớn.​
 
-Có thể tạo ra dendrogram để trực quan hóa kết quả.​
+    Có thể tạo ra dendrogram để trực quan hóa kết quả.​
 
 Nhược điểm:​
 
-Phụ thuộc vào cách tính toán khoảng cách giữa các điểm dữ liệu.​
+    Phụ thuộc vào cách tính toán khoảng cách giữa các điểm dữ liệu.​
 
-Khó xác định số lượng cụm phù hợp.​
+    Khó xác định số lượng cụm phù hợp.​
 
-Có thể nhạy cảm với nhiễu trong dữ liệu.​
+    Có thể nhạy cảm với nhiễu trong dữ liệu.​
 
 # Hirearchical methods (cont)
 ​
@@ -94,41 +112,43 @@ Phương pháp chia tách (Divisive): Bắt đầu từ tất cả các điểm 
 # Density-based methods
 Trong phân cụm, phương pháp phân cụm dựa trên mật độ là một nhóm các thuật toán xác định các cụm dựa trên sự phân bố mật độ của các điểm dữ liệu. Không giống như các phương pháp phân chia đòi hỏi số cụm cố định (k) ban đầu, phương pháp dựa trên mật độ có thể tự động tìm thấy các cụm có hình dạng bất kỳ, ngay cả các cụm có hình dạng phức tạp hoặc kéo dài.
 
+Phương pháp để filter ra các noise (outliers) and khám phá cụm của hình dạng tùy ý củ dữ liệu
+
 DBSCAN (Density-Based Spatial Clustering of Applications with Noise): Đây là một trong những thuật toán phân cụm dựa trên mật độ phổ biến nhất. DBSCAN phân cụm các điểm dữ liệu bằng cách bắt đầu từ các điểm lõi và mở rộng cụm sang các điểm lân cận mật độ cao cho đến khi không còn điểm lõi nào được tìm thấy. Điểm ranh giới được gán vào cụm lân cận và các điểm nhiễu được phân loại riêng.​
 ​
 Ưu điểm:​
 
-Có thể tự động tìm thấy số lượng cụm phù hợp.​
+    Có thể tự động tìm thấy số lượng cụm phù hợp.​
 
-Có thể xử lý dữ liệu có độ ồn cao và các cụm có hình dạng bất thường.​
+    Có thể xử lý dữ liệu có độ ồn cao và các cụm có hình dạng bất thường.​
 
-Không yêu cầu xác định trước số cụm (k).​
+    Không yêu cầu xác định trước số cụm (k).​
 
 Nhược điểm:​
 
-Có thể nhạy cảm với việc lựa chọn các tham số, chẳng hạn như bán kính vùng láng giềng và số điểm tối thiểu trong vùng láng giềng của điểm lõi.​
+    Có thể nhạy cảm với việc lựa chọn các tham số, chẳng hạn như bán kính vùng láng giềng và số điểm tối thiểu trong vùng láng giềng của điểm lõi.​
 
-Có thể tính toán phức tạp hơn so với các phương pháp phân chia đơn giản.​
+    Có thể tính toán phức tạp hơn so với các phương pháp phân chia đơn giản.​
 
 Ứng dụng:​
 
-Phân tích hình ảnh: Phát hiện các đối tượng trong ảnh dựa trên sự phân bố mật độ của các pixel.​
+    Phân tích hình ảnh: Phát hiện các đối tượng trong ảnh dựa trên sự phân bố mật độ của các pixel.​
 
-Phân tích tài chính: Nhóm các khách hàng hoặc các công ty có hành vi tài chính tương tự nhau.​
+    Phân tích tài chính: Nhóm các khách hàng hoặc các công ty có hành vi tài chính tương tự nhau.​
 
-Phân tích khoa học: Phát hiện các mẫu trong dữ liệu khoa học có thể không phù hợp với các phân bố cụ thể.​
+    Phân tích khoa học: Phát hiện các mẫu trong dữ liệu khoa học có thể không phù hợp với các phân bố cụ thể.​
 ​
 ​
 # Density-based methods(cont)
 ​Khái niệm chính:​
 
-Mật độ (Density): Là một thước đo mức độ tập trung của các điểm dữ liệu trong một vùng không gian nhất định. Các vùng có mật độ cao được coi là các cụm tiềm năng.​
+- Mật độ (Density): Là một thước đo mức độ tập trung của các điểm dữ liệu trong một vùng không gian nhất định. Các vùng có mật độ cao được coi là các cụm tiềm năng.​
 
-Điểm lõi (Core Point): Là một điểm dữ liệu được bao quanh bởi một số lượng tối thiểu các điểm dữ liệu khác trong vùng láng giềng của nó. Điểm lõi là thành viên trung tâm của một cụm.​
+- Điểm lõi (Core Point): Là một điểm dữ liệu được bao quanh bởi một số lượng tối thiểu các điểm dữ liệu khác trong vùng láng giềng của nó. Điểm lõi là thành viên trung tâm của một cụm.​
 
-Điểm ranh giới (Border Point): Là một điểm dữ liệu nằm trên ranh giới của một cụm. Nó có ít nhất một điểm lõi làm điểm láng giềng, nhưng chính nó lại không phải là điểm lõi.​
+- Điểm ranh giới (Border Point): Là một điểm dữ liệu nằm trên ranh giới của một cụm. Nó có ít nhất một điểm lõi làm điểm láng giềng, nhưng chính nó lại không phải là điểm lõi.​
 
-Điểm nhiễu (Noise Point): Là một điểm dữ liệu được cô lập và không thuộc về bất kỳ cụm nào.​
+- Điểm nhiễu (Noise Point): Là một điểm dữ liệu được cô lập và không thuộc về bất kỳ cụm nào.​
 
 # Grid-based methods
 
@@ -145,6 +165,69 @@ Xác định cụm: Dựa trên mật độ của các ô vuông/khối lập ph
 ​
 
 STING (Statistical Information Grid): Thuật toán này sử dụng một lưới nhiều cấp độ, cho phép xử lý các vùng có mật độ khác nhau.
+
+
+# Advantages and disadvantages
+
+1. Phương pháp phân chia (Partitioning Methods)
+
+Ưu điểm:
+
+Dễ hiểu và triển khai
+Hiệu quả cho các tập dữ liệu nhỏ đến trung bình
+Nhược điểm:
+
+Cần xác định trước số lượng cụm
+Có thể nhạy cảm với giá trị khởi tạo
+Khó xử lý các cụm có hình dạng không đều
+Ví dụ:
+
+K-means
+PAM (Partitioning Around Medoids)
+CLARANS (Clustering Large Applications based on RANdom Sampling)
+2. Phương pháp dựa trên khoảng cách (Distance-based Methods)
+
+
+Ưu điểm:
+
+Có thể xử lý các cụm có hình dạng không đều
+Không cần xác định trước số lượng cụm
+Nhược điểm:
+
+Có thể nhạy cảm với nhiễu
+Có thể tốn thời gian tính toán cho các tập dữ liệu lớn
+Ví dụ:
+
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+OPTICS (Ordering Points To Identify the Clustering Structure)
+BIRCH (Balanced Iterative Reducing and Clustering using Hierarchies)
+3. Phương pháp dựa trên mật độ (Density-based Methods)
+Ưu điểm:
+
+Có thể xử lý các cụm có hình dạng không đều
+Có thể phát hiện các điểm dữ liệu ngoại lệ
+Nhược điểm:
+
+Có thể nhạy cảm với độ ồn
+Có thể tốn thời gian tính toán cho các tập dữ liệu lớn
+Ví dụ:
+
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+OPTICS (Ordering Points To Identify the Clustering Structure)
+HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise)
+Ngoài ra, còn có một số phương pháp phân cụm dữ liệu khác, chẳng hạn như:
+
+Phương pháp phân cấp (Hierarchical Methods): Phương pháp phân cấp xây dựng một hệ thống phân cấp các cụm dữ liệu, trong đó mỗi cụm con là một tập con của cụm cha.
+Phương pháp dựa trên lưới (Grid-based Methods): Phương pháp dựa trên lưới chia tập dữ liệu thành một lưới các ô và gán các điểm dữ liệu cho các ô tương ứng.
+Phương pháp dựa trên mô hình (Model-based Methods): Phương pháp dựa trên mô hình sử dụng một mô hình thống kê để mô tả các cụm dữ liệu.
+Lựa chọn phương pháp phân cụm dữ liệu phù hợp
+
+Lựa chọn phương pháp phân cụm dữ liệu phù hợp phụ thuộc vào một số yếu tố, chẳng hạn như:
+
+Loại dữ liệu: Loại dữ liệu (số, danh mục, văn bản, v.v.) có thể ảnh hưởng đến lựa chọn phương pháp phân cụm dữ liệu.
+Kích thước dữ liệu: Kích thước dữ liệu có thể ảnh hưởng đến hiệu quả tính toán của phương pháp phân cụm dữ liệu.
+Hình dạng cụm: Hình dạng cụm dữ liệu có thể ảnh hưởng đến hiệu quả của phương pháp phân cụm dữ liệu.
+Mục tiêu phân cụm: Mục tiêu phân cụm dữ liệu có thể ảnh hưởng đến lựa chọn phương pháp phân cụm dữ liệu.
 
 # Density-based clustering
 
@@ -164,8 +247,8 @@ MinPts: Số lượng điểm tối thiểu trong vùng lân cận ε của mộ
 
 Điểm lõi (core object):​
 
-Là điểm có số lượng điểm trong vùng lân cận ε ít nhất bằng MinPts.​
-Là điểm có số lượng điểm trong vùng lân cận ε ít nhất bằng MinPts.​
+- Là điểm có số lượng điểm trong vùng lân cận ε ít nhất bằng MinPts.​
+- Là điểm có số lượng điểm trong vùng lân cận ε ít nhất bằng MinPts.​
 
 đóng vai trò quan trọng trong việc hình thành các cụm.​
 
@@ -173,9 +256,9 @@ Là điểm có số lượng điểm trong vùng lân cận ε ít nhất bằn
 
 Ví dụ:​
 
-Điểm p trong ảnh là điểm lõi vì có 5 điểm trong vùng lân cận ε (MinPts = 5).​
+> Điểm p trong ảnh là điểm lõi vì có 5 điểm trong vùng lân cận ε (MinPts = 5).​
 
-Điểm q không phải là điểm lõi vì chỉ có 3 điểm trong vùng lân cận ε.​
+> Điểm q không phải là điểm lõi vì chỉ có 3 điểm trong vùng lân cận ε.​
 
 ​
 ## Directly density reachable:
@@ -183,15 +266,15 @@ Là điểm có thể truy cập được từ một điểm lõi thông qua m�
 
 Điều kiện:​
 
-Hai điểm p và q được coi là liên kết mật độ nếu Neps(p) ∩ Neps(q) ≠ Ø.​
+- Hai điểm p và q được coi là liên kết mật độ nếu Neps(p) ∩ Neps(q) ≠ Ø.​
 
-Điểm q được cho là DDR từ điểm p nếu:​
+- Điểm q được cho là DDR từ điểm p nếu:​
 
-q là điểm lõi.​
+> q là điểm lõi.​
 
-q liên kết mật độ với p.​
+> q liên kết mật độ với p.​
 
-q có thể truy cập được từ p thông qua một chuỗi các điểm liên kết mật độ.​
+> q có thể truy cập được từ p thông qua một chuỗi các điểm liên kết mật độ.​
 
 Ví dụ:​
 
@@ -205,7 +288,8 @@ p và q liên kết mật độ vì Neps(p) ∩ Neps(q) ≠ Ø (điểm c nằm 
 
 q có thể truy cập được từ p thông qua chuỗi liên kết mật độ p-c-q.​
 
-​## Density-reachable
+# Density-reachable
+
 Density Reach (DR) là một khái niệm trong phương pháp phân cụm dựa trên mật độ (DBSCAN) được sử dụng để đo mức độ liên kết giữa hai điểm dữ liệu.​
 
 Cách tính DR:​
@@ -276,10 +360,10 @@ Kết quả: Các điểm có cùng nhãn sẽ thuộc cùng một cụm.​
 
 Điểm mấu chốt:​
 
-DBSCAN sử dụng hai tham số: ε (bán kính vùng lân cận) và MinPts (số lượng điểm tối thiểu trong vùng lân cận).​
+    DBSCAN sử dụng hai tham số: ε (bán kính vùng lân cận) và MinPts (số lượng điểm tối thiểu trong vùng lân cận).​
 
-Giá trị của ε và MinPts ảnh hưởng đến số lượng và kích thước của các cụm được hình thành.​
+    Giá trị của ε và MinPts ảnh hưởng đến số lượng và kích thước của các cụm được hình thành.​
 
-DBSCAN có thể phát hiện các cụm có hình dạng bất kỳ và xử lý tốt với dữ liệu nhiễu.​
+    DBSCAN có thể phát hiện các cụm có hình dạng bất kỳ và xử lý tốt với dữ liệu nhiễu.​
 
 ​
