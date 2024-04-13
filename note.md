@@ -166,68 +166,62 @@ Xác định cụm: Dựa trên mật độ của các ô vuông/khối lập ph
 
 STING (Statistical Information Grid): Thuật toán này sử dụng một lưới nhiều cấp độ, cho phép xử lý các vùng có mật độ khác nhau.
 
+# Bảng
 
-# Advantages and disadvantages
+## 1. Phân cụm phân chia (Partitioning methods)
 
-1. Phương pháp phân chia (Partitioning Methods)
-
-Ưu điểm:
-
-Dễ hiểu và triển khai
-Hiệu quả cho các tập dữ liệu nhỏ đến trung bình
-Nhược điểm:
-
-Cần xác định trước số lượng cụm
-Có thể nhạy cảm với giá trị khởi tạo
-Khó xử lý các cụm có hình dạng không đều
-Ví dụ:
-
-K-means
-PAM (Partitioning Around Medoids)
-CLARANS (Clustering Large Applications based on RANdom Sampling)
-2. Phương pháp dựa trên khoảng cách (Distance-based Methods)
-
+Phương pháp phân chia tìm các cụm có hình dạng hình cầu và không chồng lấp lên nhau. Các phương pháp này thường sử dụng trung tâm khối hoặc trung điểm (medoid) để đại diện cho trung tâm của cụm.
 
 Ưu điểm:
 
-Có thể xử lý các cụm có hình dạng không đều
-Không cần xác định trước số lượng cụm
+Hiệu quả cho tập dữ liệu nhỏ đến trung bình.
+Dễ hiểu và triển khai.
 Nhược điểm:
 
-Có thể nhạy cảm với nhiễu
-Có thể tốn thời gian tính toán cho các tập dữ liệu lớn
-Ví dụ:
+Không thể xử lý tốt các cụm có hình dạng không đều.
+Yêu cầu biết trước số lượng cụm.
+Ví dụ: K-means là một thuật toán phân chia phổ biến.
 
-DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
-OPTICS (Ordering Points To Identify the Clustering Structure)
-BIRCH (Balanced Iterative Reducing and Clustering using Hierarchies)
-3. Phương pháp dựa trên mật độ (Density-based Methods)
+## 2. Phân cụm phân cấp (Hierarchical methods)
+
+Phương pháp phân cấp phân chia dữ liệu thành một hệ thống phân cấp các cụm. Các cụm ở cấp trên có kích thước lớn hơn và chứa các cụm con ở cấp dưới.
+
 Ưu điểm:
 
-Có thể xử lý các cụm có hình dạng không đều
-Có thể phát hiện các điểm dữ liệu ngoại lệ
+Không cần biết trước số lượng cụm.
+Có thể trực quan hóa dễ dàng bằng sơ đồ cây.
 Nhược điểm:
 
-Có thể nhạy cảm với độ ồn
-Có thể tốn thời gian tính toán cho các tập dữ liệu lớn
-Ví dụ:
+Không thể sửa chữa các lỗi hợp nhất hoặc phân chia sai.
+Có thể tốn nhiều thời gian để tính toán.
+Ví dụ: Cây phân cấp (Hierarchical clustering) là một thuật toán phân cấp phổ biến.
 
-DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
-OPTICS (Ordering Points To Identify the Clustering Structure)
-HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise)
-Ngoài ra, còn có một số phương pháp phân cụm dữ liệu khác, chẳng hạn như:
+## 3. Phân cụm dựa trên mật độ (Density-based methods)
 
-Phương pháp phân cấp (Hierarchical Methods): Phương pháp phân cấp xây dựng một hệ thống phân cấp các cụm dữ liệu, trong đó mỗi cụm con là một tập con của cụm cha.
-Phương pháp dựa trên lưới (Grid-based Methods): Phương pháp dựa trên lưới chia tập dữ liệu thành một lưới các ô và gán các điểm dữ liệu cho các ô tương ứng.
-Phương pháp dựa trên mô hình (Model-based Methods): Phương pháp dựa trên mô hình sử dụng một mô hình thống kê để mô tả các cụm dữ liệu.
-Lựa chọn phương pháp phân cụm dữ liệu phù hợp
+Phương pháp dựa trên mật độ tìm các cụm có mật độ cao trong không gian và được phân cách bởi các vùng mật độ thấp.
 
-Lựa chọn phương pháp phân cụm dữ liệu phù hợp phụ thuộc vào một số yếu tố, chẳng hạn như:
+Ưu điểm:
 
-Loại dữ liệu: Loại dữ liệu (số, danh mục, văn bản, v.v.) có thể ảnh hưởng đến lựa chọn phương pháp phân cụm dữ liệu.
-Kích thước dữ liệu: Kích thước dữ liệu có thể ảnh hưởng đến hiệu quả tính toán của phương pháp phân cụm dữ liệu.
-Hình dạng cụm: Hình dạng cụm dữ liệu có thể ảnh hưởng đến hiệu quả của phương pháp phân cụm dữ liệu.
-Mục tiêu phân cụm: Mục tiêu phân cụm dữ liệu có thể ảnh hưởng đến lựa chọn phương pháp phân cụm dữ liệu.
+Có thể tìm thấy các cụm có hình dạng tùy ý.
+Có thể lọc bỏ các điểm ngoại lệ.
+Nhược điểm:
+
+Có thể bị ảnh hưởng bởi nhiễu dữ liệu.
+Yêu cầu chọn các tham số thích hợp.
+Ví dụ: DBSCAN là một thuật toán dựa trên mật độ phổ biến.
+
+## 4. Phân cụm dựa trên lưới (Grid-based methods)
+
+Phương pháp dựa trên lưới sử dụng cấu trúc dữ liệu lưới đa độ phân giải để phân chia dữ liệu.
+
+Ưu điểm:
+
+Thời gian xử lý nhanh.
+Dễ dàng mở rộng cho tập dữ liệu lớn.
+Nhược điểm:
+
+Chất lượng cụm phụ thuộc vào kích thước lưới.
+Có thể nhạy cảm với nhiễu dữ liệu.
 
 # Density-based clustering
 
