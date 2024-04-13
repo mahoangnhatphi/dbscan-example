@@ -174,13 +174,16 @@ Phương pháp phân chia tìm các cụm có hình dạng hình cầu và khôn
 
 Ưu điểm:
 
-Hiệu quả cho tập dữ liệu nhỏ đến trung bình.
-Dễ hiểu và triển khai.
+    Hiệu quả cho tập dữ liệu nhỏ đến trung bình.
+
+    Dễ hiểu và triển khai.
+
 Nhược điểm:
 
-Không thể xử lý tốt các cụm có hình dạng không đều.
-Yêu cầu biết trước số lượng cụm.
-Ví dụ: K-means là một thuật toán phân chia phổ biến.
+    Không thể xử lý tốt các cụm có hình dạng không đều.
+    Yêu cầu biết trước số lượng cụm.
+
+    Ví dụ: K-means là một thuật toán phân chia phổ biến.
 
 ## 2. Phân cụm phân cấp (Hierarchical methods)
 
@@ -188,13 +191,17 @@ Phương pháp phân cấp phân chia dữ liệu thành một hệ thống phâ
 
 Ưu điểm:
 
-Không cần biết trước số lượng cụm.
-Có thể trực quan hóa dễ dàng bằng sơ đồ cây.
+    Không cần biết trước số lượng cụm.
+
+    Có thể trực quan hóa dễ dàng bằng sơ đồ cây.
+
 Nhược điểm:
 
-Không thể sửa chữa các lỗi hợp nhất hoặc phân chia sai.
-Có thể tốn nhiều thời gian để tính toán.
-Ví dụ: Cây phân cấp (Hierarchical clustering) là một thuật toán phân cấp phổ biến.
+    Không thể sửa chữa các lỗi hợp nhất hoặc phân chia sai.
+
+    Có thể tốn nhiều thời gian để tính toán.
+
+    Ví dụ: Cây phân cấp (Hierarchical clustering) là một thuật toán phân cấp phổ biến.
 
 ## 3. Phân cụm dựa trên mật độ (Density-based methods)
 
@@ -202,13 +209,15 @@ Phương pháp dựa trên mật độ tìm các cụm có mật độ cao trong
 
 Ưu điểm:
 
-Có thể tìm thấy các cụm có hình dạng tùy ý.
-Có thể lọc bỏ các điểm ngoại lệ.
+    Có thể tìm thấy các cụm có hình dạng tùy ý.
+
+    Có thể lọc bỏ các điểm ngoại lệ.
+
 Nhược điểm:
 
-Có thể bị ảnh hưởng bởi nhiễu dữ liệu.
-Yêu cầu chọn các tham số thích hợp.
-Ví dụ: DBSCAN là một thuật toán dựa trên mật độ phổ biến.
+    Có thể bị ảnh hưởng bởi nhiễu dữ liệu.
+    Yêu cầu chọn các tham số thích hợp.
+    Ví dụ: DBSCAN là một thuật toán dựa trên mật độ phổ biến.
 
 ## 4. Phân cụm dựa trên lưới (Grid-based methods)
 
@@ -216,12 +225,48 @@ Phương pháp dựa trên lưới sử dụng cấu trúc dữ liệu lưới �
 
 Ưu điểm:
 
-Thời gian xử lý nhanh.
-Dễ dàng mở rộng cho tập dữ liệu lớn.
+    Thời gian xử lý nhanh.
+
+    Dễ dàng mở rộng cho tập dữ liệu lớn.
+
 Nhược điểm:
 
-Chất lượng cụm phụ thuộc vào kích thước lưới.
-Có thể nhạy cảm với nhiễu dữ liệu.
+    Chất lượng cụm phụ thuộc vào kích thước lưới.
+
+    Có thể nhạy cảm với nhiễu dữ liệu.
+
+# **Density Based Methods**
+Phương pháp phân cụm dựa trên mật độ là một kỹ thuật học máy không giám sát được sử dụng để phân chia dữ liệu thành các nhóm hoặc cụm dựa trên mật độ của các điểm dữ liệu trong không gian. Phương pháp này khác với các phương pháp phân cụm khác như phân cụm K-means và phân cụm phân cấp ở chỗ nó không yêu cầu số lượng cụm được xác định trước và có thể xử lý các cụm có hình dạng bất kỳ.​
+
+​
+
+Hoạt động của phương pháp phân cụm dựa trên mật độ:​
+
+    Xác định mật độ xung quanh mỗi điểm dữ liệu: Mỗi điểm dữ liệu được gán cho một giá trị mật độ dựa trên số lượng điểm dữ liệu khác nằm trong vùng lân cận của nó.​
+
+Xác định điểm lõi và điểm biên:​
+
+    Điểm lõi: Là những điểm dữ liệu có mật độ cao hơn ngưỡng mật độ đã chọn.​
+
+    Điểm biên: Là những điểm dữ liệu có mật độ thấp hơn ngưỡng mật độ đã chọn hoặc nằm trên ranh giới của một cụm.​
+
+    Phân chia dữ liệu thành các cụm: Các điểm lõi được sử dụng làm hạt nhân của các cụm, và các điểm biên được gán cho cụm gần nhất.​
+
+Ưu điểm của phương pháp phân cụm dựa trên mật độ:​
+
+    Có thể xử lý các cụm có hình dạng bất kỳ.​
+
+    Không yêu cầu số lượng cụm được xác định trước.​
+
+    Ít nhạy cảm với nhiễu so với các phương pháp phân cụm khác.​
+
+Nhược điểm của phương pháp phân cụm dựa trên mật độ:​
+
+    Có thể nhạy cảm với giá trị ngưỡng mật độ được chọn.​
+
+    Có thể tốn thời gian tính toán cho các tập dữ liệu lớn.​
+
+​
 
 # Density-based clustering
 
@@ -359,5 +404,22 @@ Kết quả: Các điểm có cùng nhãn sẽ thuộc cùng một cụm.​
     Giá trị của ε và MinPts ảnh hưởng đến số lượng và kích thước của các cụm được hình thành.​
 
     DBSCAN có thể phát hiện các cụm có hình dạng bất kỳ và xử lý tốt với dữ liệu nhiễu.​
+
+# Disadvantages
+- ​DBSCAN không hoàn toàn xác định:​
+
+> DBSCAN xác định các cụm bằng cách xác định các điểm lõi và các điểm xung quanh. Các điểm lõi là những điểm có ít nhất minPts điểm lân cận trong bán kính e. Các điểm xung quanh là những điểm có ít nhất minPts điểm lân cận trong bán kính e nhưng bản thân không phải là điểm lõi. Các điểm còn lại được coi là điểm nhiễu.​
+
+> Vấn đề với DBSCAN là các điểm biên giới có thể truy cập được từ nhiều cụm. Các điểm này có thể được phân loại vào bất kỳ cụm nào tùy thuộc vào thứ tự xử lý dữ liệu. Điều này có thể dẫn đến kết quả không nhất quán.​
+
+> Tuy nhiên, tình huống này không thường xảy ra và ít ảnh hưởng đến kết quả phân cụm. Trên thực tế, DBSCAN thường rất chính xác trong việc xác định các điểm lõi và điểm nhiễu.​
+
+- DBSCAN không thể phân cụm tốt các tập dữ liệu có sự khác biệt lớn về mật độ:​
+
+> DBSCAN dựa trên giả định rằng tất cả các cụm có mật độ tương tự. Nếu các cụm có mật độ khác nhau đáng kể, DBSCAN có thể không thể phân biệt được chúng. Điều này là do giá trị minPts và e cần được chọn phù hợp cho tất cả các cụm. Tuy nhiên, điều này rất khó thực hiện nếu các cụm có mật độ khác nhau đáng kể.​
+
+- Lựa chọn ngưỡng khoảng cách có ý nghĩa có thể khó khăn:​
+
+> Giá trị e là bán kính xung quanh được sử dụng để xác định các điểm lân cận. Giá trị này cần được chọn cẩn thận để đảm bảo rằng nó phù hợp với kích thước và mật độ của các cụm. Tuy nhiên, điều này có thể khó thực hiện nếu dữ liệu không được hiểu rõ.​
 
 ​
